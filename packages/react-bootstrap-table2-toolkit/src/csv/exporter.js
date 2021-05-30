@@ -74,9 +74,9 @@ export const save = (
     blobType
   }
 ) => {
+  const BOM = noAutoBOM ? "" : "\uFEFF"
   FileSaver.saveAs(
-    new Blob([content], { type: blobType }),
-    fileName,
-    noAutoBOM
+    new Blob([BOM + content], { type: blobType }),
+    fileName
   );
 };
